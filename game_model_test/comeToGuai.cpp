@@ -4,7 +4,6 @@
 using namespace std;
 comeToGuai::comeToGuai(Role &R, Monster &G, character &C)
 {
-	//继承 super();
 	r = R;
 	g = G;
 	c = C;
@@ -12,8 +11,6 @@ comeToGuai::comeToGuai(Role &R, Monster &G, character &C)
 character comeToGuai::ComeToGuai(character c)
 {
 	//判断当前位置是否在地图里面
-		//cout << c.R.getRo_x() << endl;
-		//cout << c.map.getX() << endl;
 		if(c.R.getRo_x()<c.map.getX()){
 		cout << "正在靠近" << c.G.getName() << endl;
 		if (c.R.getRo_x() > c.G.getG_x()) {

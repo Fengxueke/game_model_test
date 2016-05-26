@@ -5,7 +5,7 @@
 using namespace std;
 random::random(Role &r, Monster &g, character &c)
 {
-	//super();
+
 	random::r = r;
 	random::g = g;
 	//random::m = m;

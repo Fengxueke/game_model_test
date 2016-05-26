@@ -18,12 +18,9 @@ const static bool canLook = false;
 const static int biao1 = 0;
 const static int biao2 = 0;
 
-//static DWORD WINAPI Fun(LPVOID lpParameter);
-//cout << "here" << endl;
+
 static Role r("", 0, 0, 0, 0, 0, 0, 0, 0);
-//cout << "here" << endl;
 static Monster g("", 0, "", 0, 0, 0, 0, 0, 0, 0);
-//static Main m;
 static Map map(0, 0, 0);
 static character c;
 static attackGuai atk(r, c, 0, 0);
@@ -47,24 +44,12 @@ int main()
 	int start;
 	cin >> start;
 	if (start == 1) {
-		/*
-		Thread thread = new Thread(){
-			public void run() {
-			s.start();
-		}
-		};
-		thread.start();*/
-		//s.start();
 		
-		cout << "线程启动" << endl;
-		
-
+		cout << "线程启动" << endl;		
 		cout << "游戏开始" << endl;
 		c.init();//对应属性类
 		c.randomMonster();
-		c.mapset();
-		
-
+		c.mapset();		
 		cout << "输入2>>靠近" << c.G.getName() << ",输入3>>远离"
 			<< c.G.getName() << "，输入4>>攻击" << c.G.getName() << ",5>>释放技能" << endl;
 
@@ -72,28 +57,19 @@ int main()
 		startgame s(r, g, c, g_gongji, r_gongji, canLook, biao1, biao2);
 		THreadTest *tt = new THreadTest();
 		tt->s = s;
-		
-	
-			HANDLE hThread = CreateThread(NULL, 0, Thread1, tt, 0, NULL);
+		HANDLE hThread = CreateThread(NULL, 0, Thread1, tt, 0, NULL);
 		
 
 	while (c.R.getR_xue() > 0 && c.G.getG_xue() > 0) {
 		int come = 0;
 		cin >> come;
 		if (come == 2) {	
-			//cout << c.map.getX() << endl;
-			//cout << c.R.getRo_x() << endl;			
 			ran.randomxue();
 			c=ctg.ComeToGuai(c);
-			//cout << "角色位置-->" << c.R.getRo_x() << "  怪的位置" << c.G.getG_x() << endl;
-			
-
 		}
 		if (come == 3) {
-			//cout << "角色位置-->" << c.R.getRo_x() << "  怪的位置" << c.G.getG_x() << endl;
 			ran.randomxue();
 			rm.Remove_1(c);
-
 		}
 		if (come == 4) {
 			atk.AttackGuai(c);
