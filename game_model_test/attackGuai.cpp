@@ -5,16 +5,16 @@ using namespace std;
 attackGuai::attackGuai()
 {
 }
-attackGuai::attackGuai(Role r, character c, bool g_gongji, bool r_gongji)
+attackGuai::attackGuai(Role &R, character &C, bool G_gongji, bool R_gongji)
 {
 	
-	attackGuai::r = r;
-	attackGuai::c = c;
-	attackGuai::g_gongji = g_gongji;
-	attackGuai::r_gongji = r_gongji;
+	r = R;
+	c = C;
+	g_gongji = G_gongji;
+	r_gongji = R_gongji;
 }
 
-void attackGuai::AttackGuai()
+character attackGuai::AttackGuai(character &c)
 {
 	// 判断是否在角色攻击范围内
 	if ((c.G.getG_x() - c.R.getRo_x() > c.R.getR_distance() / 2)) {
@@ -28,8 +28,8 @@ void attackGuai::AttackGuai()
 		cout << "暴击！！！" << endl;
 	}
 
-	cout << c.G.getName() << "的血量剩余为" << endl;
-	cout << c.R.getName() << "的体力剩余为" << endl;
+	cout << c.G.getName() << "的血量剩余为:" << c.G.getG_xue() << endl;
+	cout << c.R.getName() << "的体力剩余为:" << c.R.getR_tili() << endl;
 	//判断怪物是否死亡
 	if (c.G.getG_xue() <= 0 && c.R.getR_xue() > 0) {
 		g_gongji = false;
@@ -54,4 +54,5 @@ void attackGuai::AttackGuai()
 			break;
 		}
 	}
+	return c;
 }

@@ -2,14 +2,14 @@
 #include "comeToGuai.h"
 #include <iostream>
 using namespace std;
-comeToGuai::comeToGuai(Role& R, Monster& G, character& C)
+comeToGuai::comeToGuai(Role &R, Monster &G, character &C)
 {
 	//继承 super();
 	r = R;
 	g = G;
 	c = C;
 }
-void comeToGuai::ComeToGuai()
+character comeToGuai::ComeToGuai(character c)
 {
 	//判断当前位置是否在地图里面
 		//cout << c.R.getRo_x() << endl;
@@ -35,6 +35,7 @@ void comeToGuai::ComeToGuai()
 				<< c.R.getRo_y() << endl;
 		cout << c.G.getName() << "的位置x：" << c.G.getG_x() << " y:"
 				<< c.G.getG_y() << endl;
+		return c;
 		}else{
 			//否则则通关
 			cout << "恭喜通关！" << endl;

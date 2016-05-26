@@ -3,7 +3,7 @@
 #include <iostream>
 #define Random(x) (rand() % x)
 using namespace std;
-random::random(Role r, Monster g, character c)
+random::random(Role &r, Monster &g, character &c)
 {
 	//super();
 	random::r = r;

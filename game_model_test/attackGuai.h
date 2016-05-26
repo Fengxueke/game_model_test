@@ -13,6 +13,6 @@ private:
 	bool r_gongji = false;
 public :
 	attackGuai();
-	attackGuai(Role r, character c, bool g_gongji, bool r_gongji);
-	void AttackGuai();
+	attackGuai(Role &r, character &c, bool g_gongji, bool r_gongji);
+	character AttackGuai(character &c);
 };

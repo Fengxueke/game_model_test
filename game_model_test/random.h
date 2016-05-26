@@ -10,6 +10,6 @@ private:
 	//Main m ;
 	character c;
 public:
-	random(Role r, Monster g, character c);
+	random(Role &r, Monster &g, character &c);
 	void randomxue();
 };

@@ -16,9 +16,9 @@ private:
 	int biao1 = 0;
 	int biao2 = 0;
 public:
-	startgame(Role r,  Monster g, character c, bool g_gongji,
+	startgame(Role &r,  Monster &g, character &c, bool g_gongji,
 		bool r_gongji, bool canLook, int biao1, int biao2);
-	void ai(character c);
-	void start();
+	character ai(character &c);
+	character start(character &c);
 	startgame();
 };

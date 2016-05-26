@@ -20,22 +20,23 @@ const static int biao2 = 0;
 
 //static DWORD WINAPI Fun(LPVOID lpParameter);
 //cout << "here" << endl;
-Role r("", 0, 0, 0, 0, 0, 0, 0, 0);
+static Role r("", 0, 0, 0, 0, 0, 0, 0, 0);
 //cout << "here" << endl;
-Monster g("", 0, "", 0, 0, 0, 0, 0, 0, 0);
+static Monster g("", 0, "", 0, 0, 0, 0, 0, 0, 0);
 //static Main m;
-Map map(0, 0, 0);
+static Map map(0, 0, 0);
 static character c;
-attackGuai atk(r, c, 0, 0);
+static attackGuai atk(r, c, 0, 0);
 static d_skill dskill;
-random ran(r, g, c);
-Remove rm(r, g, c, g_gongji, r_gongji, canLook, biao1, biao2);
+static random ran(r, g, c);
+static Remove rm(r, g, c, g_gongji, r_gongji, canLook, biao1, biao2);
 static level l;
+
 
 DWORD WINAPI Thread1(LPVOID lpParamter)
 {
 	THreadTest* mythread = (THreadTest*)lpParamter;
-	mythread->s.start();
+	mythread->s.start(c);
 	//start();
 	return 0;
 }
@@ -56,6 +57,8 @@ int main()
 		//s.start();
 		
 		cout << "线程启动" << endl;
+		
+
 		cout << "游戏开始" << endl;
 		c.init();//对应属性类
 		c.randomMonster();
@@ -65,32 +68,35 @@ int main()
 		cout << "输入2>>靠近" << c.G.getName() << ",输入3>>远离"
 			<< c.G.getName() << "，输入4>>攻击" << c.G.getName() << ",5>>释放技能" << endl;
 
-		comeToGuai ctg(r, g, c); //值的问题，放这里
+		static comeToGuai ctg(r, g, c);//值的问题，放这里
+		startgame s(r, g, c, g_gongji, r_gongji, canLook, biao1, biao2);
+		THreadTest *tt = new THreadTest();
+		tt->s = s;
+		
 	
-
+			HANDLE hThread = CreateThread(NULL, 0, Thread1, tt, 0, NULL);
+		
 
 	while (c.R.getR_xue() > 0 && c.G.getG_xue() > 0) {
 		int come = 0;
 		cin >> come;
-		if (come == 2) {			
+		if (come == 2) {	
 			//cout << c.map.getX() << endl;
-			//cout << c.R.getRo_x() << endl;
-			startgame s(r, g, c, g_gongji, r_gongji, canLook, biao1, biao2);
-			THreadTest *tt = new THreadTest();
-			tt->s = s;
-			HANDLE hThread = CreateThread(NULL, 0, Thread1, tt, 0, NULL);
+			//cout << c.R.getRo_x() << endl;			
 			ran.randomxue();
-			ctg.ComeToGuai();
+			c=ctg.ComeToGuai(c);
+			//cout << "角色位置-->" << c.R.getRo_x() << "  怪的位置" << c.G.getG_x() << endl;
 			
 
 		}
 		if (come == 3) {
+			//cout << "角色位置-->" << c.R.getRo_x() << "  怪的位置" << c.G.getG_x() << endl;
 			ran.randomxue();
-			rm.Remove_1();
+			rm.Remove_1(c);
 
 		}
 		if (come == 4) {
-			atk.AttackGuai();
+			atk.AttackGuai(c);
 		}
 		if (come == 5) {
 			dskill.skill(r, g, dskill, c);

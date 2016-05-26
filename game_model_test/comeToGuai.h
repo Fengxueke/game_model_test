@@ -10,7 +10,7 @@ private:
 	character c;
 	
 public :
-	comeToGuai(Role& r, Monster& g, character& c);
+	comeToGuai(Role &r, Monster &g, character &c);
 	//comeToGuai(comeToGuai& ct);
-	void ComeToGuai();
+	character ComeToGuai(character c);
 };

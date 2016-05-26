@@ -2,20 +2,20 @@
 #include "Remove.h"
 #include <iostream>
 using namespace std;
-Remove::Remove(Role r,  Monster g, character c, bool g_gongji, bool r_gongji, bool canLook, int biao1, int biao2)
+Remove::Remove(Role &R,  Monster &G, character &C, bool G_gongji, bool R_gongji, bool CanLook, int Biao1, int Biao2)
 {
-	Remove::r = r;
+	r = R;
 	//Remove::m = m;
-	Remove::g = g;
-	Remove::c = c;
-	Remove::g_gongji = g_gongji;
-	Remove::r_gongji = r_gongji;
-	Remove::canLook = canLook;
-	Remove::biao1 = biao1;
-	Remove::biao2 = biao2;
+	g = G;
+	c = C;
+	g_gongji = G_gongji;
+	r_gongji = R_gongji;
+	canLook = CanLook;
+	biao1 = Biao1;
+	biao2 = Biao2;
 }
 
-void Remove::Remove_1()
+character Remove::Remove_1(character &c)
 {
 	//判断当前位置是否在地图里面
 	if (c.R.getRo_x()<c.map.getX()) {
@@ -29,14 +29,14 @@ void Remove::Remove_1()
 			}
 			if (c.R.getRo_x() - c.G.getG_x() > g.L_rect_x / 2) {
 				cout << "已逃出" << c.G.getName() << "的可视范围" << endl;
-				biao1 = 0;
-				return;
+				biao1 = 0;				
 			}
 			if (c.R.getRo_x() - c.G.getG_x() > c.R.getR_distance()) {
 				cout << "已逃出" << c.G.getName() << "的攻击范围，但"
 					<< c.G.getName() << "仍在靠近....." << endl;
 				biao2 = 0;
 			}
+			return c;
 		}
 		else {
 			c.R.setRo_x(c.R.getRo_x() - 50);
@@ -49,7 +49,7 @@ void Remove::Remove_1()
 			if (c.G.getG_x() - c.R.getRo_x() > g.L_rect_x / 2) {
 				cout << "已逃出" << c.G.getName() << "的可视范围" << endl;
 				biao1 = 0;
-				return;
+				return c;
 			}
 			if (c.G.getG_x() - c.R.getRo_x() > c.R.getR_distance()) {
 				cout << "已逃出" << c.G.getName() << "的攻击范围，但"
@@ -57,6 +57,7 @@ void Remove::Remove_1()
 				biao2 = 0;
 			}
 
+			return c;
 		}
 		cout << c.R.getName() << "的位置x：" << c.R.getRo_x() << " y:"
 			<< c.R.getRo_y() << endl;
